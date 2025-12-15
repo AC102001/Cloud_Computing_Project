@@ -1,0 +1,11 @@
+URL="https://yliq855ne6.execute-api.us-east-1.amazonaws.com/ingest"
+
+echo "Starting baseline medium burst..."
+for i in $(seq 1 800); do
+  curl -s -X POST "$URL" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id":"baseline","action":"ping"}' > /dev/null &
+  sleep 0.01
+done
+wait
+echo "Baseline burst complete."
